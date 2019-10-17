@@ -7,6 +7,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
   },
@@ -41,10 +42,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Mano Title',
+      filename: 'index.html',
+      template: 'src/index.html'
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-    filename: '[name].css',
-  }),
+      filename: '[name].css',
+    }),
   ]
 }
